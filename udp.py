@@ -8,5 +8,6 @@ while True:
     message, address = server_socket.recvfrom(1024)
     print(message)
     message.decode("utf-8")
-    print(json.loads(message[op]))
+    data = json.loads(message)
+    print (data["op"])
     server_socket.sendto(message, address)
