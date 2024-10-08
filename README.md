@@ -1,3 +1,3 @@
 # odoo-testing
 
-git clone https://https://github.com/lcmkgin/odoo-testing/.git
+git clone https://github.com/lcmkgin/odoo-testing.git
