@@ -32,14 +32,14 @@ while True:
     print(message)
     message.decode("utf-8")
     info = message.split("}{")
-        for count in info:
-            if count.find("{") == -1:
-                temp = "{" + count
-            if count.find("}") == -1:
-                temp = count + "}"
-            result = json.loads(temp)
-            data.append(result)
-            print (data)
+    for count in info:
+        if count.find("{") == -1:
+            temp = "{" + count
+        if count.find("}") == -1:
+            temp = count + "}"
+        result = json.loads(temp)
+        data.append(result)
+        print (data)
     # try:
     #     message, address = server_socket.recvfrom(1024)
     #     print(message)
