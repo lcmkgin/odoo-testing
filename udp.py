@@ -31,13 +31,10 @@ while True:
         message.decode("utf-8")
         data = json.loads(message)
         for x in ops:
-            if data["op"] == x or data["op"].index(x) != -1:
+            if data["op"] == x or data["op"].find(x) != -1:
                 print ("Operation mode = ",x)
-                # elif data["op"].find(ops[1]) != -1:
-                #     print ("Operaton mode =", ops[1]+data["id"])
-                # elif data["op"].find(ops[2]) != -1:
-                #     print ("Operation mode =", ops[2]+data["id"])
-        #print (data["op"])
+                if x is "gpm" or x is "gwm":
+                    print ("ID = ", data["id"])
         server_socket.sendto(message, address)
         #models.execute_kw(db, uid, password, 'hr.employee', 'write', [[21], {'work_email': data["op"], 'work_phone': data["type"]}])
         #partner = models.execute_kw(db, uid, password, 'hr.employee', 'read', [21], {'fields': ['name', 'work_phone', 'work_email']})
