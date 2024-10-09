@@ -8,6 +8,7 @@ username = 'changxizheng@gmail.com'
 password = 'Wiznet.219'
 
 ops= ["giaq", "gpm", "gwm","gonf","gair","gplc"]
+data = []
 
 #print version (confirmed logged in)
 common = xmlrpc.client.ServerProxy('{}/xmlrpc/2/common'.format(url))
@@ -24,17 +25,27 @@ models = xmlrpc.client.ServerProxy('{}/xmlrpc/2/object'.format(url))
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 server_socket.bind(('', 1460))
 
+
+
 while True:
     try:
         message, address = server_socket.recvfrom(1024)
         print(message)
         message.decode("utf-8")
-        data = json.loads(message)
-        for x in ops:
-            if data["op"] == x or data["op"].find(x) != -1:
-                print ("Operation mode = ",x)
-                if x == "gpm" or x == "gwm":
-                    print ("ID = ", data["id"])
+        info = message.split("}{")
+        for count in info:
+            if count.find("{") == -1:
+                temp = "{" + count
+            if count.find("}") == -1:
+                temp = count + "}"
+            result = json.loads(temp)
+            data.append(result)
+            print (data)
+        # for x in ops:
+        #     if data["op"] == x or data["op"].find(x) != -1:
+        #         print ("Operation mode = ",x)
+        #         if x == "gpm" or x == "gwm":
+        #             print ("ID = ", data["id"])
         server_socket.sendto(message, address)
         #models.execute_kw(db, uid, password, 'hr.employee', 'write', [[21], {'work_email': data["op"], 'work_phone': data["type"]}])
         #partner = models.execute_kw(db, uid, password, 'hr.employee', 'read', [21], {'fields': ['name', 'work_phone', 'work_email']})
