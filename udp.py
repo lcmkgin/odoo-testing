@@ -30,11 +30,12 @@ while True:
     message.decode("utf-8")
     data = json.loads(message)
     for x in ops:
-        if data["op"] is ops[x]:
-            print ("Operation mode = ",ops[x])
+        if data["op"] is x:
+            print ("Operation mode = ",x)
         elif data["op"].find(ops[1]) != -1:
             print ("Operaton mode =", ops[1]+data["id"])
-
+        elif data["op"].find(ops[2]) != -1:
+            print ("Operation mode =", ops[2]+data["id"])
     #print (data["op"])
     server_socket.sendto(message, address)
     #models.execute_kw(db, uid, password, 'hr.employee', 'write', [[21], {'work_email': data["op"], 'work_phone': data["type"]}])
