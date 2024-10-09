@@ -7,6 +7,8 @@ db = 'odoo_219'
 username = 'changxizheng@gmail.com'
 password = 'Wiznet.219'
 
+ops= ["giaq", "gpm", "gwm","gonf","gair","gplc"]
+
 #print version (confirmed logged in)
 common = xmlrpc.client.ServerProxy('{}/xmlrpc/2/common'.format(url))
 version = common.version()
@@ -27,11 +29,17 @@ while True:
     print(message)
     message.decode("utf-8")
     data = json.loads(message)
-    print (data["op"])
+    for x in ops:
+        if data["op"] is ops[x]:
+            print ("Operation mode = ",ops[x])
+        elif data["op"].find(ops[1]) != -1:
+            print ("Operaton mode =", ops[1]+data["id"])
+
+    #print (data["op"])
     server_socket.sendto(message, address)
-    models.execute_kw(db, uid, password, 'hr.employee', 'write', [[21], {'work_email': data["op"], 'work_phone': data["type"]}])
-    partner = models.execute_kw(db, uid, password, 'hr.employee', 'read', [21], {'fields': ['name', 'work_phone', 'work_email']})
-    print ("Partner:",partner)               
+    #models.execute_kw(db, uid, password, 'hr.employee', 'write', [[21], {'work_email': data["op"], 'work_phone': data["type"]}])
+    #partner = models.execute_kw(db, uid, password, 'hr.employee', 'read', [21], {'fields': ['name', 'work_phone', 'work_email']})
+    #print ("Partner:",partner)               
 
 
 
