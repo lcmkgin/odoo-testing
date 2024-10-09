@@ -30,6 +30,8 @@ while True:
     message.decode("utf-8")
     data = json.loads(message)
     for x in ops:
+        print (x)
+        print (data["op"])
         if data["op"] is x:
             print ("Operation mode = ",x)
         elif data["op"].find(ops[1]) != -1:
