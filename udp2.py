@@ -38,7 +38,7 @@ while True:
             temp = count + "}"
         result = json.loads(temp)
         data.append(result)
-    for y in range(len(data))
+    for y in range(len(data)):
         for x in ops:
             if data[y]["op"] == x or data[y]["op"].find(x) != -1:
                 print ("Operation mode = ",x)
