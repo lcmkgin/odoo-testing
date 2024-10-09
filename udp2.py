@@ -38,7 +38,8 @@ while True:
             temp = count + "}"
         result = json.loads(temp)
         data.append(result)
-        print (data)
+    print (data[0]["op"])
+    print (data[1]["op"])
     # try:
     #     message, address = server_socket.recvfrom(1024)
     #     print(message)
