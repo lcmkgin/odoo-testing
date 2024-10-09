@@ -30,8 +30,7 @@ server_socket.bind(('', 1460))
 while True:
     message, address = server_socket.recvfrom(1024)
     print(message)
-    message.decode("utf-8")
-    info = message.split("}{")
+    info = message.decode("utf-8").split("}{")
     for count in info:
         if count.find("{") == -1:
             temp = "{" + count
