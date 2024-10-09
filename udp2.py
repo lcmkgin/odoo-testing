@@ -38,12 +38,11 @@ while True:
             temp = count + "}"
         result = json.loads(temp)
         data.append(result)
-    for y in range(len(data)):
         for x in ops:
-            if data[y]["op"] == x or data[y]["op"].find(x) != -1:
+            if data[data.index(count)]["op"] == x or data[data.index(count)]["op"].find(x) != -1:
                 print ("Operation mode = ",x)
                 if x == "gpm" or x == "gwm":
-                    print ("ID = ", data["id"])
+                    print ("ID = ", data[data.index(count)]["id"])
     # try:
     #     message, address = server_socket.recvfrom(1024)
     #     print(message)
