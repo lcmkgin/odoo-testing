@@ -31,7 +31,7 @@ while True:
         message.decode("utf-8")
         data = json.loads(message)
         for x in ops:
-            #print (x)
+            print (x)
             #print (data["op"])
             if data["op"] == x:
                 print ("Operation mode = ",x)
