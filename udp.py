@@ -31,8 +31,7 @@ while True:
     try:
         message, address = server_socket.recvfrom(1024)
         print(message)
-        message.decode("utf-8")
-        info = message.split("}{")
+        info = message.decode("utf-8").split("}{")
         for count in info:
             if count.find("{") == -1:
                 temp = "{" + count
@@ -40,12 +39,12 @@ while True:
                 temp = count + "}"
             result = json.loads(temp)
             data.append(result)
-            print (data)
-        # for x in ops:
-        #     if data["op"] == x or data["op"].find(x) != -1:
-        #         print ("Operation mode = ",x)
-        #         if x == "gpm" or x == "gwm":
-        #             print ("ID = ", data["id"])
+            #print (data)
+            for x in ops:
+                if data[count]["op"] == x or data[count]["op"].find(x) != -1:
+                    print ("Operation mode = ",x)
+                    if x == "gpm" or x == "gwm":
+                        print ("ID = ", data["id"])
         server_socket.sendto(message, address)
         #models.execute_kw(db, uid, password, 'hr.employee', 'write', [[21], {'work_email': data["op"], 'work_phone': data["type"]}])
         #partner = models.execute_kw(db, uid, password, 'hr.employee', 'read', [21], {'fields': ['name', 'work_phone', 'work_email']})
