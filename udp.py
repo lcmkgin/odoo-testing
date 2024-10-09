@@ -25,24 +25,35 @@ server_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 server_socket.bind(('', 1460))
 
 while True:
-    message, address = server_socket.recvfrom(1024)
-    print(message)
-    message.decode("utf-8")
-    data = json.loads(message)
-    for x in ops:
-        #print (x)
+    try:
+        message, address = server_socket.recvfrom(1024)
+        print(message)
+        message.decode("utf-8")
+        data = json.loads(message)
+        for x in ops:
+            #print (x)
+            #print (data["op"])
+            if data["op"] == x:
+                print ("Operation mode = ",x)
+            elif data["op"].find(ops[1]) != -1:
+                print ("Operaton mode =", ops[1]+data["id"])
+            elif data["op"].find(ops[2]) != -1:
+                print ("Operation mode =", ops[2]+data["id"])
         #print (data["op"])
-        if data["op"] == x:
-            print ("Operation mode = ",x)
-        elif data["op"].find(ops[1]) != -1:
-            print ("Operaton mode =", ops[1]+data["id"])
-        elif data["op"].find(ops[2]) != -1:
-            print ("Operation mode =", ops[2]+data["id"])
-    #print (data["op"])
-    server_socket.sendto(message, address)
-    #models.execute_kw(db, uid, password, 'hr.employee', 'write', [[21], {'work_email': data["op"], 'work_phone': data["type"]}])
-    #partner = models.execute_kw(db, uid, password, 'hr.employee', 'read', [21], {'fields': ['name', 'work_phone', 'work_email']})
-    #print ("Partner:",partner)               
+        server_socket.sendto(message, address)
+        #models.execute_kw(db, uid, password, 'hr.employee', 'write', [[21], {'work_email': data["op"], 'work_phone': data["type"]}])
+        #partner = models.execute_kw(db, uid, password, 'hr.employee', 'read', [21], {'fields': ['name', 'work_phone', 'work_email']})
+        #print ("Partner:",partner)  
+    except Exception as e:
+        print ("Error = ",e)
+        json_error = "Wrong json format, please resend"
+        server_socket.sendto(json_error, address)
+    else:
+        pass
+    finally:
+        pass
+
+             
 
 
 
