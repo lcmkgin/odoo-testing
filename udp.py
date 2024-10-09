@@ -47,7 +47,7 @@ while True:
     except Exception as e:
         print ("Error = ",e)
         json_error = "Wrong json format, please resend"
-        server_socket.sendto(json_error, address)
+        server_socket.sendto(json_error.encode(), address)
     else:
         pass
     finally:
