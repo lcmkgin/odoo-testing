@@ -33,7 +33,7 @@ while True:
         for x in ops:
             if data["op"] == x or data["op"].find(x) != -1:
                 print ("Operation mode = ",x)
-                if x is "gpm" or x is "gwm":
+                if x == "gpm" or x == "gwm":
                     print ("ID = ", data["id"])
         server_socket.sendto(message, address)
         #models.execute_kw(db, uid, password, 'hr.employee', 'write', [[21], {'work_email': data["op"], 'work_phone': data["type"]}])
