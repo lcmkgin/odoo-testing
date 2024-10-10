@@ -9,6 +9,7 @@ password = 'Wiznet.219'
 
 ops= ["giaq", "gpm", "gwm","gonf","gair","gplc"]
 odoo_field_id = [21,22,23,24,25,26]
+ids = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10"]
 data = []
 
 #print version (confirmed logged in)
@@ -27,7 +28,6 @@ server_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 server_socket.bind(('', 1461))
 
 
-
 while True:
     message, address = server_socket.recvfrom(1024)
     print(message)
@@ -42,11 +42,13 @@ while True:
         result = json.loads(temp)
         data.append(result)
         for x in ops:
-            if data[info.index(count)]["op"] == x or data[info.index(count)]["op"].find(x) != -1:
+            if data[info.index(count)]["op"].find(x) != -1:
                 print ("Operation mode = ",x)
-                field_id = odoo_field_id[ops.index(x)]
-                if x == "gpm" or x == "gwm":
-                    print ("ID = ", data[info.index(count)]["id"])
+                print ("ID = ", data[info.index(count)]["id"])
+                for y in ids:
+                    if data[info.index(count)]["id"] == ids[ids.index(y)]:
+                        print ("ID {} = ".format(ids[ids.index(y)]) + data[info.index(count)]["id"])
+                        field_id = odoo_field_id[ids.index(y)]
             models.execute_kw(db, uid, password, 'hr.employee', 'write', [[field_id], 
                 {'work_email': data[info.index(count)]["op"], 'work_phone': data[info.index(count)]["type"], 
                 'mobile_phone': data[info.index(count)]["value"]}])
