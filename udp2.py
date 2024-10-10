@@ -47,7 +47,9 @@ while True:
                 print (odoo_field_id[ops.index(x)])
                 if x == "gpm" or x == "gwm":
                     print ("ID = ", data[info.index(count)]["id"])
-            #models.execute_kw(db, uid, password, 'hr.employee', 'write', [[21], {'work_email': data["op"], 'work_phone': data["type"]}])
+            models.execute_kw(db, uid, password, 'hr.employee', 'write', [[odoo_field_id[ops.index(x)]], 
+                {'work_email': data[info.index(count)]["op"], 'work_phone': data[info.index(count)]["type"], 
+                'mobile_phone': data[info.index(count)]["value"]}])
     # try:
     #     message, address = server_socket.recvfrom(1024)
     #     print(message)
