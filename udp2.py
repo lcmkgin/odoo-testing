@@ -35,8 +35,10 @@ while True:
     for count in info:
         if count.find("{") == -1:
             temp = "{" + count
+        else: temp = count
         if count.find("}") == -1:
             temp = count + "}"
+        else: temp = count
         result = json.loads(temp)
         data.append(result)
         for x in ops:
