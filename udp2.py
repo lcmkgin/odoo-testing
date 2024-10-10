@@ -44,7 +44,7 @@ while True:
         for x in ops:
             if data[info.index(count)]["op"] == x or data[info.index(count)]["op"].find(x) != -1:
                 print ("Operation mode = ",x)
-                print (odoo_field_id[data.index(x)])
+                print (odoo_field_id[ops.index(x)])
                 if x == "gpm" or x == "gwm":
                     print ("ID = ", data[info.index(count)]["id"])
             #models.execute_kw(db, uid, password, 'hr.employee', 'write', [[21], {'work_email': data["op"], 'work_phone': data["type"]}])
