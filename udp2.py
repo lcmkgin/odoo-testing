@@ -48,10 +48,12 @@ while True:
                 for y in ids:
                     if data[info.index(count)]["id"] == ids[ids.index(y)]:
                         print ("ID {} = ".format(ids[ids.index(y)]) + data[info.index(count)]["id"])
-                        field_id = odoo_field_id[ids.index(y)]
+                        field_id = odoo_field_id[ids.index(y) + data[info.index(count)]["op"]]
             models.execute_kw(db, uid, password, 'hr.employee', 'write', [[field_id], 
                 {'work_email': data[info.index(count)]["op"], 'work_phone': data[info.index(count)]["type"], 
                 'mobile_phone': data[info.index(count)]["value"]}])
+            partner = models.execute_kw(db, uid, password, 'hr.employee', 'read', [21], {'fields': ['name', 'work_phone', 'work_email']})
+            print ("Partner:",partner) 
     # try:
     #     message, address = server_socket.recvfrom(1024)
     #     print(message)
