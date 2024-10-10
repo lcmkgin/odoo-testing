@@ -8,6 +8,7 @@ username = 'changxizheng@gmail.com'
 password = 'Wiznet.219'
 
 ops= ["giaq", "gpm", "gwm","gonf","gair","gplc"]
+odoo_field_id = ["21","22","23","24","25","26"]
 data = []
 
 #print version (confirmed logged in)
@@ -41,6 +42,7 @@ while True:
         for x in ops:
             if data[info.index(count)]["op"] == x or data[info.index(count)]["op"].find(x) != -1:
                 print ("Operation mode = ",x)
+                print (odoo_field_id[data.index(x)])
                 if x == "gpm" or x == "gwm":
                     print ("ID = ", data[info.index(count)]["id"])
     # try:
