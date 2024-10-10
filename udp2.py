@@ -52,7 +52,7 @@ while True:
             models.execute_kw(db, uid, password, 'hr.employee', 'write', [[field_id], 
                 {'work_email': data[info.index(count)]["op"], 'work_phone': data[info.index(count)]["type"], 
                 'mobile_phone': data[info.index(count)]["value"]}])
-            partner = models.execute_kw(db, uid, password, 'hr.employee', 'read', [21], {'fields': ['name', 'work_phone', 'work_email']})
+            partner = models.execute_kw(db, uid, password, 'hr.employee', 'read', [21], {'fields': ['mobile_phone', 'work_phone', 'work_email']})
             print ("Partner:",partner) 
     # try:
     #     message, address = server_socket.recvfrom(1024)
