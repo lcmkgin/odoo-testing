@@ -8,7 +8,7 @@ username = 'changxizheng@gmail.com'
 password = 'Wiznet.219'
 
 ops= ["giaq", "gpm", "gwm","gonf","gair","gplc"]
-odoo_field_id = ["21","22","23","24","25","26"]
+odoo_field_id = [21,22,23,24,25,26]
 data = []
 
 #print version (confirmed logged in)
